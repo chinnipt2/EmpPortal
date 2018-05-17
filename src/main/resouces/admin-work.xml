@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="admin" extends="base" namespace="/admin">
+	<default-interceptor-ref name="sessionInterceptor"></default-interceptor-ref>
+		<action name="adminMenu" class="adminMenuAction">
+		 	<!-- <interceptor-ref name="exampleStack" >
+                <param name="validation.excludeMethods"> populate</param>
+            </interceptor-ref> -->
+		 	<interceptor-ref name="exampleStack" />
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action>
+	</package>
+</struts>
