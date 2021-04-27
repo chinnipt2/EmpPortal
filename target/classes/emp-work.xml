@@ -1,0 +1,26 @@
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<package name="emp" extends="base" namespace="/emp">
+		
+		<!-- Example for dynamic mehtod invocation -->
+		<action name="singIn" class="com.my.actions.LoginAction">		 	
+			<result name="success">/WEB-INF/emp/Home.jsp</result>
+		</action>
+		<action name="singOut" class="com.my.actions.LoginAction" method="singOut">		 	
+			<result name="success">/WEB-INF/emp/Home.jsp</result>
+		</action>
+		<action name="newData" class="com.my.actions.PersonalInfoActions" method="newData">
+			<result name="success">/WEB-INF/emp/Home.jsp</result>
+		</action>
+		<action name="editData" class="com.my.actions.PersonalInfoActions" method="editData">
+			<result name="success">/WEB-INF/emp/PersonalInfo.jsp</result>
+		</action>
+		<action name="deleteData" class="com.my.actions.PersonalInfoActions" method="deleteData">
+			<result name="success">/WEB-INF/emp/PersonalInfo.jsp</result>
+		</action>
+		<action name="downloadFile" class="com.my.actions.PersonalInfoActions" method="downloadFile">
+			<result name="success">/WEB-INF/emp/PersonalInfo.jsp</result>
+		</action>
+	</package>
+</struts>

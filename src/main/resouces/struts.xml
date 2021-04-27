@@ -1,16 +1,15 @@
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<include file="struts-default.xml" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.mapper.alwaysSelectFullNamespace"
+		value="true" />
 	<package name="base" extends="struts-default">
-		<result-types>
-			<result-type name="redirectNoPrepend"
-				class="org.apache.struts2.dispatcher.ServletRedirectResult">
-				<param name="prependServletContext">false</param>
-			</result-type>
-		</result-types>
+		<!-- <result-types> <result-type name="redirectNoPrepend" class="org.apache.struts2.dispatcher.ServletRedirectResult"> 
+			<param name="prependServletContext">false</param> </result-type> </result-types> -->
 		<interceptors>
 			<interceptor name="sessionInterceptor" class="sessionInterceptor" />
-			<!-- <interceptor name="roleInterceptor" class="roleInterceptor"/> -->
+			<interceptor name="roleInterceptor" class="roleInterceptor" />
 			<interceptor-stack name="exampleStack">
 				<interceptor-ref name="exception" />
 				<interceptor-ref name="alias" />
@@ -31,7 +30,7 @@
 				</interceptor-ref>
 				<interceptor-ref name="conversionError" />
 				<interceptor-ref name="validation">
-					<!-- <param name="excludeMethods">populate</param> -->
+					<param name="excludeMethods">populate</param>
 				</interceptor-ref>
 				<interceptor-ref name="workflow">
 					<param name="excludeMethods"> input,back,cancel,browse</param>
@@ -51,11 +50,18 @@
 			<exception-mapping exception="java.lang.Exception"
 				result="error" />
 		</global-exception-mappings>
-		<action name="login" class="loginAction">
+		<!-- <action name="login" class="loginAction">
 			<result name="success">/WEB-INF/home.html</result>
+		</action> -->
+		<action name="help">
+			<result type="redirectAction">
+				<param name="actionName">guest/login.action</param>
+			</result>
 		</action>
 	</package>
 	<include file="admin-work.xml" />
+	<include file="guest-work.xml" />
+	<include file="emp-work.xml" />
 	<!-- <include file="other-work.xml"/> -->
 
 </struts>

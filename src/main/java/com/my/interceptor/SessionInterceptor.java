@@ -4,6 +4,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 @Component
@@ -19,6 +20,7 @@ public class SessionInterceptor implements Interceptor{
 	@Override
 	public void init() {
 		System.out.println("SessionInterceptor initialized");
+		ActionContext.getContext().getValueStack().set("documentRoot", "example");
 		
 	}
 

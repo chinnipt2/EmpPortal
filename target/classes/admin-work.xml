@@ -1,13 +1,61 @@
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
+<constant name="struts.enable.DynamicMethodInvocation" value="true" />
 	<package name="admin" extends="base" namespace="/admin">
-	<default-interceptor-ref name="sessionInterceptor"></default-interceptor-ref>
+		<!-- <default-interceptor-ref name="sessionInterceptor"/> -->
 		<action name="adminMenu" class="adminMenuAction">
-		 	<!-- <interceptor-ref name="exampleStack" >
-                <param name="validation.excludeMethods"> populate</param>
-            </interceptor-ref> -->
-		 	<interceptor-ref name="exampleStack" />
+			<!-- <interceptor-ref name="exampleStack" > <param name="validation.excludeMethods"> 
+				populate</param> </interceptor-ref> -->
+			<!-- <interceptor-ref name="exampleStack" /> -->
 			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
 		</action>
+		<!-- Example for dynamic mehtod invocation -->
+		<action name="newEmpAdd" method="add" class="newEmpAction" >
+		 	
+			<result name="page">/WEB-INF/admin/newEmp.jsp</result>
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action>
+		<action name="newEmpEdit" method="edit" class="newEmpAction" >
+		 	
+			<result name="page">/WEB-INF/admin/newEmp.jsp</result>
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action> 
+		<action name="newEmpDelete" method="delete" class="newEmpAction" >
+		 	
+			<result name="page">/WEB-INF/admin/newEmp.jsp</result>
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action>
+		<action name="justClass" method="normalMethod" class="com.my.actions.JustClass" >
+		 	
+			<result name="page">/WEB-INF/admin/newEmp.jsp</result>
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action>  
+		<action name="myActionForm"  class="com.my.actions.MyActionForm" >
+		 	
+			<result name="page">/WEB-INF/admin/newEmp.jsp</result>
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action>
+		<action name="myForm"  class="com.my.actions.MyActionForm" method="page">
+		 	
+			<result name="page">/WEB-INF/emp/MyForm.jsp</result>
+			
+		</action>  
+		<!-- <action name="newEmp" class="newEmpAction" >
+		 	
+			<result name="page">/WEB-INF/admin/newEmp.jsp</result>
+			<result name="success">/WEB-INF/admin/adminMenu.jsp</result>
+		</action>  -->
+		<!-- example for 
+			1. wildcard method invocation it will work with 2.3.24.1 version of struts this feature is not working with  2.5.16 
+			2. And this class it not spring created its by struts
+		<action name="*User" method="{1}" class="com.my.actions.UserAction">
+            <result name="success">/success.jsp</result>
+        </action>
+        
+        you can make it work..
+        https://stackoverflow.com/questions/37218790/wildcard-action-mapping-no-longer-working-after-updating-to-struts-2-5
+        
+		-->
+		
 	</package>
 </struts>

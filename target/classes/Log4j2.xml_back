@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		 <Property name="log-path">D:\temp\logs\</Property> 
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="tsc-log" fileName="${log-path}/tsc.log" append="true"
+		filePattern="${log-path}/tsc-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+	  			<TimeBasedTriggeringPolicy interval="6" modulate="true" />
+	            <SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			
+		</RollingFile>
+		
+		<RollingFile name="integration-log" fileName="${log-path}/integration_tsc.log" append="true"
+		filePattern="${log-path}/integration_tsc-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+	  			<TimeBasedTriggeringPolicy interval="6" modulate="true" />
+	            <SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<RollingFile name="quartz-log" fileName="${log-path}/quartz_scheduler.log" append="true"
+		filePattern="${log-path}/quartz_scheduler-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+	  			<TimeBasedTriggeringPolicy interval="6" modulate="true" />
+	            <SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<RollingFile name="request_zoneuser-log" fileName="${log-path}/request_zoneuser.log" append="true"
+		filePattern="${log-path}/request_zoneuser-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+	  			<TimeBasedTriggeringPolicy interval="6" modulate="true" />
+	            <SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<RollingFile name="request_candidate-log" fileName="${log-path}/request_candidate.log" append="true"
+		filePattern="${log-path}/request_candidate-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+	  			<TimeBasedTriggeringPolicy interval="6" modulate="true" />
+	            <SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<RollingFile name="passport-log" fileName="${log-path}/tee_passport.log" append="true"
+		filePattern="${log-path}/tee_passport-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+	  			<TimeBasedTriggeringPolicy interval="6" modulate="true" />
+	            <SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+		
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+		</Console>
+	</Appenders>
+	
+	<Loggers>
+	
+		<Logger name="com.taleo.tic.services.integration" level="info" additivity="false">
+			<appender-ref ref="integration-log" level="info"/>
+		</Logger>
+		
+		<Logger name="org.springframework.scheduling.quartz" level="info" additivity="false">
+			<appender-ref ref="quartz-log" level="info"/>
+		</Logger>
+
+		<Logger name="com.taleo.tic.zoneuser.request.TicZoneUserRequestLoggerFilter" level="info" additivity="false">
+			<appender-ref ref="request_zoneuser-log" level="info"/>
+		</Logger>
+		
+		<Logger name="com.taleo.tic.invitee.request.TicCandidateRequestLoggerFilter" level="info" additivity="false">
+			<appender-ref ref="request_candidate-log" level="info"/>
+		</Logger>
+		
+		<Logger name="com.taleo.tic.services.tee" level="info" additivity="false">
+			<appender-ref ref="passport-log" level="info"/>
+		</Logger>
+		
+		
+		<Root level="info" additivity="false">
+			<appender-ref ref="console"/>
+			<appender-ref ref="tsc-log"/>
+		</Root>
+	</Loggers>
+</Configuration>

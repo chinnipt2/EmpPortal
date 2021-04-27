@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	Error accord during the processing.
 </body>
 </html>

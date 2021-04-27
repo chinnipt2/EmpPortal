@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="INFO">
+	<Properties>
+		<Property name="log-path">D:\\tomcatlogs\\logs\\em_logs</Property>
+		<!-- <Property name="log-path">D:/temp/logs</Property> -->
+	</Properties>
+	<Appenders>
+		<RollingFile name="history-log"
+			fileName="${log-path}/history-evalmgmt-.log.${date:yyyy-MM-dd}"
+			append="true"
+			filePattern="${log-path}/history-evalmgmt--%d{yyyy-MM-dd}.log}">
+			<PatternLayout>
+				<pattern> %d{DEFAULT} [%t] [%-5level] %c - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+
+		</RollingFile>
+		<RollingFile name="transactions-log"
+			fileName="${log-path}/transactions-evalmgmt-.log.${date:yyyy-MM-dd}"
+			append="true"
+			filePattern="${log-path}/transactions-evalmgmt--%d{yyyy-MM-dd}.log}">
+			<PatternLayout>
+				<pattern> %d{DEFAULT} [%t] [%-5level] %c - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="webservices-history-log"
+			fileName="${log-path}/webservices-history-evalmgmt-.log.${date:yyyy-MM-dd}"
+			append="true"
+			filePattern="${log-path}/webservices-history-evalmgmt--%d{yyyy-MM-dd}.log}">
+			<PatternLayout>
+				<pattern> %d{DEFAULT} [%t] [%-5level] %c - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="quartz-log"
+			fileName="${log-path}/quartz-evalmgmt-.log.${date:yyyy-MM-dd}"
+			append="true"
+			filePattern="${log-path}/quartz-evalmgmt--%d{yyyy-MM-dd}.log}">
+			<PatternLayout>
+				<pattern> %d{DEFAULT} [%t] [%-5level] %c - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+
+		</RollingFile>
+		<RollingFile name="notifications-log"
+			fileName="${log-path}/notifications-evalmgmt-.log.${date:yyyy-MM-dd}"
+			append="true"
+			filePattern="${log-path}/notifications-evalmgmt--%d{yyyy-MM-dd}.log}">
+			<PatternLayout>
+				<pattern> %d{DEFAULT} [%t] [%-5level] %c - %msg%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+
+		</RollingFile>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.opensymphony.xwork.util.OgnlUtil">
+			<level value="ERROR" />
+		</Logger>
+		<Logger name="com.taleo.em.common.framework.spring.quartz" level="info" additivity="false">
+			<appender-ref ref="quartz-log" level="info" />
+		</Logger>
+		<Logger name="com.taleo.em.jobs.notification" level="info" additivity="false">
+			<appender-ref ref="notifications-log" level="info" />
+		</Logger>
+		<Logger name="com.taleo.em.servlet.filters.EmClientUserRequestLoggerFilter"  level="info" additivity="false">
+			<appender-ref ref="history-log"  level="info"/>
+		</Logger>
+		<Logger name="httpclient.wire" level="info"  additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.apache.axiom" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.apache.axis2" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.apache.commons.httpclient" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.apache.rampart" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.apache.ws.security"  level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.apache.xml.security" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="org.hibernate" level="info" additivity="false">
+			<appender-ref ref="history-log" level="info" />
+		</Logger>
+		<Logger name="org.hibernate.engine.StatefulPersistenceContext.ProxyWarnLog">
+			<level value="ERROR" />
+		</Logger>
+		<Logger name="org.quartz" level="info" additivity="false">
+			<appender-ref ref="quartz-log" level="info" />
+		</Logger>
+		<Logger name="org.springframework" level="info" additivity="false">
+			<appender-ref ref="history-log" level="info" />
+		</Logger>
+		<Logger name="org.springframework.scheduling.quartz" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<Logger name="userguide.loggingmodule" level="info" additivity="false">
+			<appender-ref ref="webservices-history-log" level="info" />
+		</Logger>
+		<!-- <Logger name="com.taleo" level="info" additivity="false">
+			<appender-ref ref="history-log" level="info" />
+		</Logger> -->
+		<root level="info" additivity="false">
+			<appender-ref ref="console"/>
+			<appender-ref ref="history-log" />
+		</root>
+	</Loggers>
+</configuration>
